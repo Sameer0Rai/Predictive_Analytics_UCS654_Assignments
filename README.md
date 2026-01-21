@@ -78,10 +78,6 @@ The final submission consists of:
 - 📍 λ (lambda)
 - 📍 c
 
-📈 Additional plots generated:
-- Histogram of **z** with PDF overlay
-- CDF of the fitted distribution
-- Empirical CDF vs theoretical CDF comparison
 
 ---
 
