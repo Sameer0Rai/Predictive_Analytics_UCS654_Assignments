@@ -6,21 +6,22 @@ This repository contains my solution for **Assignment 1** of the **Predictive An
 
 ## 🎯 Objective
 
-Estimate the parameters of the following probability density function (PDF):
+Estimate the parameters of the following PDF:
 
-\[
-\hat{p}(z) = c \, e^{-\lambda (z-\mu)^2}
-\]
+**p̂(z) = c · exp( −λ (z − μ)² )**
 
-using the **NO2** feature from the given Kaggle dataset after applying the required nonlinear transformation 🧠
+using the **NO2** feature from the given Kaggle dataset after applying the nonlinear transformation specified in the assignment.
 
 ---
 
 ## 🗂️ Dataset
 
-- 📌 Source: Kaggle (as provided in the assignment)
-- 📄 File used: `data.csv`
+- 📌 Source: Kaggle  
+- 🔗 Link: https://www.kaggle.com/datasets/shrutibhargava94/india-air-quality-data  
+- 📄 File used: `data.csv` (downloaded from Kaggle)
 - 🔍 Feature used: **NO2**
+
+⚠️ Note: The dataset file is large, so it is **not uploaded** in this repository.
 
 ---
 
@@ -39,30 +40,18 @@ using the **NO2** feature from the given Kaggle dataset after applying the requi
 
 For roll number **r**, compute:
 
-\[
-a_r = 0.05(r \bmod 7)
-\]
-\[
-b_r = 0.3(r \bmod 5 + 1)
-\]
+- **aᵣ = 0.05 · (r mod 7)**
+- **bᵣ = 0.3 · ((r mod 5) + 1)**
 
 ---
 
 ### 3️⃣ Apply nonlinear transformation
 
-Transform NO2 values \(x\) into \(z\) using:
+Transform NO2 values **x** into **z** using:
 
-\[
-z = x + a_r\arcsin(\text{clip}(b_r x))
-\]
+**z = x + aᵣ · arcsin( clip(bᵣ · x, −1, 1) )**
 
-Clipping is applied to satisfy the valid domain of \(\arcsin(\cdot)\):
-
-\[
--1 \le b_r x \le 1
-\]
-
-✅ This ensures there are no invalid values while retaining all data points.
+✅ Clipping is applied to satisfy the valid domain of arcsin (input must be between −1 and 1).
 
 ---
 
@@ -70,27 +59,14 @@ Clipping is applied to satisfy the valid domain of \(\arcsin(\cdot)\):
 
 Given:
 
-\[
-\hat{p}(z) = c \, e^{-\lambda (z-\mu)^2}
-\]
+**p̂(z) = c · exp( −λ (z − μ)² )**
 
-Estimate parameters using:
+Estimate parameters:
 
-\[
-\mu = \frac{1}{n}\sum_{i=1}^{n} z_i
-\]
-
-\[
-\sigma^2 = \frac{1}{n}\sum_{i=1}^{n} (z_i-\mu)^2
-\]
-
-\[
-\lambda = \frac{1}{2\sigma^2}
-\]
-
-\[
-c = \sqrt{\frac{\lambda}{\pi}}
-\]
+- **μ = mean(z)**
+- **σ² = mean( (z − μ)² )**
+- **λ = 1 / (2σ²)**
+- **c = sqrt( λ / π )**
 
 ---
 
@@ -98,12 +74,12 @@ c = \sqrt{\frac{\lambda}{\pi}}
 
 The final submission consists of:
 
-- 📍 \( \mu \) (mu)
-- 📍 \( \lambda \) (lambda)
-- 📍 \( c \)
+- 📍 μ (mu)
+- 📍 λ (lambda)
+- 📍 c
 
 📈 Additional plots generated:
-- Histogram of \(z\) with PDF overlay
+- Histogram of **z** with PDF overlay
 - CDF of the fitted distribution
 - Empirical CDF vs theoretical CDF comparison
 
@@ -113,6 +89,5 @@ The final submission consists of:
 
 ```text
 .
-├── data.csv
 ├── Assignment_01_L2.ipynb
 └── README.md
